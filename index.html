@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div style = "color:black">
+        <form action = "{{ url_for('predict')}}" method="post">
+            <h1> Demand Forecasting </h1>
+            <h2> Select Food Product </h2>
+            <select name = "Product" id="first" required = "required">
+                <option value = "Milk">Milk</option>
+                <option value = "Bread">Bread</option>
+                <option value = "Soda">Soda</option>
+                <option value = "Cereal">Cereal</option>
+                <option value = "Rice">Rice</option>
+                <option value = "Yogurt">Yogurt</option>
+                <option value = "Cheese">Cheese</option>
+                <option value = "Popcorn">Popcorn</option>
+                <option value = "Keto Coffee">Keto Coffee</option>
+                <option value = "Peanut Butter">Peanut Butter</option>
+                <option value = "Jelly Sandwiches">Jelly Sandwiches</option>
+                <option value = "Banana">Banana</option>
+                <option value = "Olive Oil">Olive Oil</option>
+                <option value = "Premia Sugar">Premia Sugar</option>
+                <option value = "Jaggery">Jaggery</option>
+                <option value = "Salt">Salt</option>
+                <option value = "Dry Fruits">Dry Fruits</option>
+                <option value = "Cookies">Cookies</option>
+                <option value = "Tea">Tea</option>
+            </select>
+                
+           
+            <h2> Select Store </h2> 
+            <select name = "Store" id="second" required = "required">
+                <option value = "1">Pune, Satara</option>
+                <option value = "2">Pune, Kalyani Nagar</option>
+                <option value = "3">Pune, Shivaji Nagar</option>
+                <option value = "4">Mumbai, Airoli</option>
+                <option value = "5">Mumbai, Seawoods West</option>
+                <option value = "6">Aurangabad, N12</option>
+                <option value = "7">Karad, Malkapur</option>
+                <option value = "8">Nanded, Canal Rd</option>
+                <option value = "9">Mumbai, Panvel</option>
+                <option value = "10">Pune, Deccan</option>
+            </select>
+
+            <br><br><br><br><button id ="sub" type="submit">FORECAST FOR UPCOMING MONTH</button>
+             <br>
+             
+        </form>   
+        
+        
+        <br><br>
+           <table border = "1">
+        <tr>
+                <th>Days</th>
+                <th>Sales Quantity</th>
+        </tr>
+        {% for k, v in prediction_text1.items() %}
+                <tr>
+                        <td width = "150">{{ k }}</td>
+                        <td width = "150">{{ v }}</td>
+                </tr>
+        {% endfor %}
+        </table>
+        
+      
+       
+       
+        <br><br><h1>{{ prediction_text2 }}</h1>
+        <br><br><h1>{{ prediction_text3 }}</h1>
+    </div>
+            
+    
+    <style>
+        body {
+            background-color: #f7cac9;
+            text-align: center;
+            padding: 0px;
+        }</style>
+        
