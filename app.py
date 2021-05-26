@@ -3,23 +3,27 @@
 from flask import Flask, render_template, request
 
 import numpy as np
-import tensorflow as tf
-from tensorflow import keras
+##import tensorflow as tf
+##from tensorflow import keras
 import pandas as pd
 import requests
 import pickle 
 
 import sklearn
-import gzip
+
 
 app = Flask(__name__)
 
-with gzip.open('test.pklz', 'rb') as ifp:
-    model1=pickle.load(ifp)
+file = open('rand_model.pkl','rb')
 
-model2 = pickle.load(open('LGBM.pkl','rb'))
-model3 = keras.models.load_model("DNN_MODEL")
-model4 = keras.models.load_model("MLP_MODEL")
+m1 = pickle.load(file) 
+
+##with gzip.open('test.pklz', 'rb') as ifp:
+  ##  model1=pickle.load(ifp)
+
+##model2 = pickle.load(open('LGBM.pkl','rb'))
+##model3 = keras.models.load_model("DNN_MODEL")
+##model4 = keras.models.load_model("MLP_MODEL")
 
 @app.route('/',methods = ['GET'])
 def Home():
@@ -51,7 +55,7 @@ def predict():
         ##if a == 1:
           #  X = np.asarray(X).astype(np.float32)  
             
-        prediction = model1.predict(X)
+        prediction = m1.predict(X)
         A = [int(a) for a in prediction]
         s=sum(A)
         avg = int(s/len(A))
